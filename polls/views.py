@@ -3,9 +3,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
+from django.http import HttpResponse
+import os
+
 from .models import Choice, Question
 from django.utils import timezone
 
+def home(request):
+    times = int(os.environ.get('TIMES',3))
+    return HttpResponse('Hello World! ' * times)
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
